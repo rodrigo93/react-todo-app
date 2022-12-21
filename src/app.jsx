@@ -1,4 +1,17 @@
+class Todo extends React.Component {
+    render() {
+        let checked = (this.props.done == "true");
+
+        return <div className="todo">
+            <span>
+                <input type="checkbox" checked={checked}/>
+                <input type="text" value={this.props.text}/>
+            </span>
+        </div>;
+    }
+}
+
 ReactDOM.render(
-    <h1>Hello world from React!</h1>,
+    <Todo text="Todo 1" done="true"/>,
     document.getElementById("root")
 );
