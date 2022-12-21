@@ -3,9 +3,9 @@ class Todo extends React.Component {
         super(props);
 
         this.state = {
-            done: (this.props.done == "true" && props.done),
+            done: props.done,
             text: props.text
-        }
+        };
 
         this.handleClick  = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -47,7 +47,31 @@ class Todo extends React.Component {
     }
 }
 
+class TodoList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todos: [
+                {_id: 1, text: "Item #1", done: false},
+                {_id: 2, text: "Item #2", done: true}
+            ]
+        }
+    }
+
+    render() {
+        const todoList = this.state.todos.map(
+            (todo) => <Todo key={todo._id.toString()} text={todo.text} done={todo.done}/>
+        );
+
+        return <React.Fragment>
+            <h1>React to-do list</h1>
+            { todoList }
+        </React.Fragment>
+    }
+}
+
 ReactDOM.render(
-    <Todo text="Todo 1" done="true"/>,
+    <TodoList/>,
     document.getElementById("root")
 );
