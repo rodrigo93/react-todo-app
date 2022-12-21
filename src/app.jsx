@@ -40,6 +40,7 @@ class Todo extends React.Component {
                                        onClick={this.handleClick}/>
 
                 <input type="text" value={this.state.text}
+                                   className={(this.state.done) ? "done" : "not-done"}
                                    onChange={this.handleChange}
                                    onBlur={this.handleSubmit}/>
             </span>
