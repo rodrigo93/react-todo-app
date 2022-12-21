@@ -57,6 +57,21 @@ class TodoList extends React.Component {
                 {_id: 2, text: "Item #2", done: true}
             ]
         }
+
+        this.newTodo = this.newTodo.bind(this);
+    }
+
+    newTodo(event) {
+        event.preventDefault();
+
+        let todos = this.state.todos;
+        todos.push({ _id: "" })
+
+        this.setState(
+            state => ({
+                todos: todos
+            })
+        )
     }
 
     render() {
@@ -67,6 +82,7 @@ class TodoList extends React.Component {
         return <React.Fragment>
             <h1>React to-do list</h1>
             { todoList }
+            <a href="#" onClick={this.newTodo}>Add Item</a>
         </React.Fragment>
     }
 }
