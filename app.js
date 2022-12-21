@@ -18,10 +18,39 @@ var Todo = function (_React$Component) {
             done: _this.props.done == "true" && props.done,
             text: props.text
         };
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
 
     _createClass(Todo, [{
+        key: "handleClick",
+        value: function handleClick(event) {
+            this.setState(function (state) {
+                return {
+                    done: !state.done
+                };
+            }, function (event) {
+                this.handleSubmit(event);
+            });
+        }
+    }, {
+        key: "handleChange",
+        value: function handleChange(event) {
+            this.setState(function (state) {
+                return {
+                    text: event.target.value
+                };
+            });
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            console.log("TODO: Implement submit handler!");
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -30,8 +59,11 @@ var Todo = function (_React$Component) {
                 React.createElement(
                     "span",
                     null,
-                    React.createElement("input", { type: "checkbox", checked: this.state.done }),
-                    React.createElement("input", { type: "text", value: this.state.text })
+                    React.createElement("input", { type: "checkbox", checked: this.state.done,
+                        onClick: this.handleClick }),
+                    React.createElement("input", { type: "text", value: this.state.text,
+                        onChange: this.handleChange,
+                        onBlur: this.handleSubmit })
                 )
             );
         }
